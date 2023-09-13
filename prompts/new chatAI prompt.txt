@@ -1,0 +1,18 @@
+below are the needs of the user
+experience: {experience}
+budget: {budget}
+interest: {interest}
+should be portable?: {portable} 
+astrophotography?: {astrophoto}
+
+below are the specs of the telescope that is chosen for the user based off of their needs
+name: {name} 
+price: {price}
+optical design: {optical design} 
+aperture: {aperture}
+focal length: {focal length}
+focal ratio: {focal ratio}
+mount type: {mount}
+resolution: {resolution}
+
+use the specs of the telescope and recommend the chosen telescope to the user. Make sure to emphasise how the telescope's price is within the users budget. Also emphasise how the chosen telescope fits the user needs. do not address the user

@@ -1,0 +1,9 @@
+{
+  "openai": "",
+  "mysql": {
+    "host": "",
+    "user": "",
+    "passwd": "",
+    "database": ""
+  }
+}

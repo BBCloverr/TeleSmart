@@ -1,0 +1,23 @@
+Consider the following details about the given telescope and write a review.
+
+below are the telescope's details
+optical design: {optical_design}
+aperture: {aperture}
+focal length: {focal_length}
+focal ratio: {focal_ratio}
+resolution: {resolution}
+mount type: {mount}
+eyepieces: {eyepieces}
+focuser: {focuser}
+weight: {weight}
+
+do not include the above specs in the review. include the following details in your review.
+portable: whether the telescope is portable or not. use yes or no as answers
+
+astrophoto: Whether the telescope could be used for astrophotography. use yes or no as answers
+
+setup: the complexity of the telescopes setup. setup complexity ranges from simple, moderate, complex
+
+give the above details in a json format.
+ 
+Then make sure to point out which of the telescope specs that you considered in order to determine each of the details and also explain how you came to your conclusion about the details using the specs that you've chosen. Do so for every detail seperately. Only use the specs that is provided to conclude the details.

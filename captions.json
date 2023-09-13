@@ -1,0 +1,8 @@
+{
+  "beginner_caption": "you're Someone who is new to using telescopes, having spent a few days to several weeks observing celestial objects like\nthe moon and planets.",
+  "intermediate_caption": "you're Someone who has used telescopes for several months to year, gaining proficiency in operating different \ntypes of telescopes and locating a variety of celestial objects beyond the basics, such as star clusters, galaxies, and \nnebulae.",
+  "advanced_caption": "you are someone with extensive experience, spanning multiple years to decades. you are able to navigate telescopes of \nvarious complexities. You engage in specialized observing, like astrophotography, or tracking faint and rare celestial \nphenomena.",
+  "simple_caption": "you are comfortable with minimal assembly that can be done in a matter of minutes, typically requiring no tools.",
+  "moderate_caption": "you are comfortable with moderate assembly and alignment procedures which usually takes around 15-30 minutes with some \nbasic tools possibly required.",
+  "complex_caption": "you are comfortable with intricate assembly, precise alignment, and often calibration processes which could take an hour \nor more and may require specialized tools or software."
+}
