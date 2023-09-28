@@ -2,6 +2,7 @@
 
 # TeleSmart
 ![programming language][python]
+![project status][status]
 ![chatbot][gpt]
 ![licence][licence]
 
@@ -102,3 +103,4 @@ simply fill in the .json file with your infomation.
 [licence]: https://img.shields.io/badge/licence-GNU_General_Public_License_v3.0-green
 [python]: https://img.shields.io/badge/made_with-Python-blue?logo=python
 [gpt]: https://img.shields.io/badge/GPT_3.5_Turbo-20b2aa?logo=openai
+[status]: https://img.shields.io/badge/WIP-ffa500
