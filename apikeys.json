@@ -1,9 +1,9 @@
 {
-  "openai": "",
+  "openai": "openai apikey goes here",
   "mysql": {
-    "host": "",
-    "user": "",
-    "passwd": "",
-    "database": ""
+    "host": "the name of the host goes here eg: localhost",
+    "user": "the username of the database goes here eg: root",
+    "passwd": "the password of the database goes here",
+    "database": "the name of the database goes here"
   }
 }
