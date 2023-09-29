@@ -32,8 +32,13 @@ TeleSmart will ask you a few questions regarding your interests of telescopes an
 
 ## Prerequisites
 
-You need an **openai apikey** and have **mysql** downloaded to your pc in order to run this project.
+You need an **openai apikey** and have **mysql** downloaded and setup on your pc in order to run this project.
 Make sure to **turn off your vpn** before running this project.
+if you do not know how to do so then,
+
+- [How to download mysql and set it up for the first time(for windows)](https://www.mysqltutorial.org/install-mysql/)
+- [How to get an openai apikey](https://www.howtogeek.com/885918/how-to-get-an-openai-api-key/)
+- [How to turn off vpn ;)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ## Setup
 
@@ -57,11 +62,19 @@ pip install -r requirements.txt
 ### 3. Create database
 
 using your command line,
-1. create a database using,
+
+1. Login to mysql using,
+   ```
+   mysql -u root -p
+   ```
+> **important**
+> Make sure to enter your mysql password after -p
+
+3. Create a database using,
     ```
     CREATE database_name
     ```
-2. Populate the database with the telescopes.sql by using,
+4. Populate the database with the telescopes.sql by using,
     ```
     mysql -u username -p password database_name < telescopes.sql
     ```
