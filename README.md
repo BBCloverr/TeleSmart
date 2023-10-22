@@ -61,7 +61,7 @@ pip install -r requirements.txt
 
 ### 3. Create database
 
-using your command line,
+#### using your command line,
 
 1. Login to mysql using,
    ```
@@ -78,6 +78,22 @@ using your command line,
     ```
     mysql -u username -p password database_name < telescopes.sql
     ```
+
+#### using mysql workbench
+
+1. connect to database.
+
+2. go to on the top ribbon, click **server**.
+<img src="./media/server ribbon.png" alt="location of 'server' in the ribbon">
+
+3. then on the dropdown list, select **data import**.
+<img src="./media/data import option.png" alt="selecting 'data import' from 'server'">
+
+4. on the popup, tick the **import from self contained file**. 
+<img src="./media/select option.png" alt="import from self contained file">
+
+5. Put the path to the **telescopes.sql** into the box right next to it.
+<img src="./media/change path.png" src="path box">
 
 ### 4. Populate the apikeys.json file
 

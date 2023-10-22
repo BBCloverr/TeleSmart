@@ -36,38 +36,50 @@ class TelescopeDatabase:
 
     def get_telescope_data(self, user_dictionary):
 
+        def translate_user_dictionary(_user_dictionary, mode):
+            translation_table = {
+                "portable": [{1: "yes", 0: "no"}, {"yes": 1, "no": 0}],
+                "astrophoto": [{1: "yes", 0: "no"}, {"yes": 1, "no": 0}],
+                "setup": [{1: "simple", 2: "moderate", 3: "complex"}, {"simple": 1, "moderate": 2, "complex": 3}],
+                "telescope_portability": [{1: "yes", 0: "no"}],
+                "telescope_astrophotography": [{1: "yes", 0: "no"}],
+                "telescope_setup": [{1: "simple", 2: "moderate", 3: "complex"}]
+            }
+
+            for label in _user_dictionary.keys():
+                if label in translation_table.keys():
+                    _user_dictionary[label] = translation_table[label][mode][_user_dictionary[label]]
+            return _user_dictionary
+
         telescope_data_map = {}
         sql_get_command = '''
-        SELECT id, budget FROM user WHERE
-        experience = "{experience}" AND
-        interest = "{interest}" AND
-        portable = "{portable}" AND
-        astrophoto = "{astrophoto}" AND
-        setup = "{setup}" AND
-        budget <= {budget}
-        ORDER BY ABS({budget} - budget) LIMIT 1;
+        select details.name,  details.aperture,  details.focal_length,  details.focal_ratio,  details.mount,  details.optical_design, user.budget,  details.resolution, user.portable, user.astrophoto, user.setup
+        from details inner join user on details.id = user.id 
+        where user.experience = "{experience}" and user.budget <= {budget} and user.interest = "{interest}" and user.portable >= {portable} and user.astrophoto >= {astrophoto} and user.setup <= {setup}
+        order by user.astrophoto asc, user.portable asc, user.setup desc, user.budget desc
+        limit 1;
         '''
 
-        telescope_data_keys = ['name', 'optical design', 'aperture', 'focal length', 'focal ratio', 'mount',
-                               'resolution']
+        telescope_data_keys = ['name', 'aperture', 'focal length', 'focal ratio', 'mount', 'optical design', 'price',
+                               'resolution', 'telescope_portability', 'telescope_astrophotography', 'telescope_setup']
+
+        user_dictionary = translate_user_dictionary(user_dictionary, mode=1)
 
         self.curser.execute(sql_get_command.format(**user_dictionary))
 
         try:
-            user_table_output = self.curser.fetchone()
-
-            telescope_id = user_table_output[0]
-            self.curser.execute(f'SELECT name, optical_design, aperture, focal_length, focal_ratio, mount, resolution FROM details WHERE id = {telescope_id};')
             telescope_data_values = self.curser.fetchone()
 
             for i in range(len(telescope_data_keys)):
                 telescope_data_map[telescope_data_keys[i]] = telescope_data_values[i]
-            telescope_data_map['price'] = user_table_output[1]
+            telescope_data_map = telescope_data_map | user_dictionary
+            output = translate_user_dictionary(telescope_data_map, mode=0)
 
         except TypeError:
             telescope_data_map = None
+            output = telescope_data_map
 
-        return telescope_data_map
+        return output
 
     def exists(self, name):
         is_there = False
