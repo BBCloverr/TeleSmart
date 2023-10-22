@@ -8,8 +8,9 @@ from dependencies import td, utilities
 
 # you might wanna change theese my deer visitors
 captions_path = "captions.json"
-prompt_path = 'prompts/new chatAI prompt.txt'
+prompt_path = 'prompts/new chatAI prompt2.txt'
 apikeys_path = 'apikeys.json'
+logo_path = r"media\teles logo1-modified.png"
 
 with open(apikeys_path) as config:
     openai.api_key = json.load(config)['openai']
@@ -22,11 +23,16 @@ usually perform better.)
 with open(captions_path, 'r') as captions_file:
     captions = json.loads(captions_file.read())
 
-st.title('Telescope Assistant')
+col1, col2, col3 = st.columns(3)
+with col2:
+    st.image(logo_path, width=190)
+    st.title("TeleSmart")
+
 experience = st.radio(
     '🔴How would you describe your experience with telescopes?',
     ['beginner', 'intermediate', 'advanced'],
-    captions=[captions['beginner_caption'], captions['intermediate_caption'], captions['advanced_caption']]
+    captions=[captions['beginner_caption'], captions['intermediate_caption'], captions['advanced_caption']],
+    index=None
 )
 
 budget = st.number_input("🔴What is your budget(in dollars) for purchasing a telescope?", min_value=0, max_value=20000, value=0)
@@ -58,9 +64,9 @@ if st.button("Submit"):
 
     db_connection = td.TelescopeDatabase()
     telescope_data_map = db_connection.get_telescope_data(user_data_map)
-    telescope_data_map['name'] = utilities.unpack_quotes(telescope_data_map['name'])
 
     try:
+        telescope_data_map['name'] = utilities.unpack_quotes(telescope_data_map['name'])
         # get response from chat
         system_content = '''
         you are a helpful assistant who is very knowledgeable about all consumer telescopes. you
@@ -68,10 +74,8 @@ if st.button("Submit"):
         manner.
         '''
 
-        kwargs = user_data_map | telescope_data_map
-
         with open(prompt_path, 'r') as user_content_file:
-            user_content = user_content_file.read().format(**kwargs)
+            user_content = user_content_file.read().format(**telescope_data_map)
 
         prompt = [
             {'role': 'system', 'content': system_content},
@@ -99,7 +103,7 @@ if st.button("Submit"):
 
         # show response
         st.image(image_url, caption=telescope_name, width=300)
-        st.write(response + shop_section)
+        st.write(response)
 
     except TypeError:
         st.write(
