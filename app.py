@@ -32,7 +32,6 @@ experience = st.radio(
     '🔴How would you describe your experience with telescopes?',
     ['beginner', 'intermediate', 'advanced'],
     captions=[captions['beginner_caption'], captions['intermediate_caption'], captions['advanced_caption']],
-    index=None
 )
 
 budget = st.number_input("🔴What is your budget(in dollars) for purchasing a telescope?", min_value=0, max_value=20000, value=0)
@@ -82,7 +81,7 @@ if st.button("Submit"):
             {'role': 'user', 'content': user_content}
         ]
 
-        response = openai.ChatCompletion.create(model='gpt-3.5-turbo', messages=prompt, temperature=0).choices[
+        response = openai.ChatCompletion.create(model='gpt-3.5-turbo', messages=prompt, temperature=1).choices[
             0].message.content
 
         # search image and shops
