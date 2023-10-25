@@ -102,7 +102,7 @@ if st.button("Submit"):
 
         # show response
         st.image(image_url, caption=telescope_name, width=300)
-        st.write(response)
+        st.write(response + shop_section)
 
     except TypeError:
         st.write(
